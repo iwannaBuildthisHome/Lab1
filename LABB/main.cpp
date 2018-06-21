@@ -53,14 +53,24 @@ void printResult ( const IntegerList & _l )
     IntegerListPrint( _l, std::cout );
     std::cout << std::endl;
 }
-
-IntegerList::Node * findNodeByIndex(IntegerList & _l,const  int index)
+IntegerList::Node * findNodeByValue(IntegerList & _l, int value)
+{
+    IntegerList::Node * pBeginNode = _l.m_pFirst;
+    while(pBeginNode)
+    {
+        if(pBeginNode->m_value == value)
+            return pBeginNode;
+        pBeginNode = pBeginNode->m_pNext;
+    }
+    return nullptr;
+}
+IntegerList::Node * findNodeByIndex(IntegerList & _l, const int index)
 {
     IntegerList::Node * pBeginNode = _l.m_pFirst;
     int i =0;
     while (pBeginNode!=NULL)
     {
-        if(i == index)
+        if(i == index )
         {
             return pBeginNode;
         }
@@ -73,6 +83,43 @@ IntegerList::Node * findNodeByIndex(IntegerList & _l,const  int index)
 
 int main()
 {
+   
+    IntegerList l;
+    IntegerListInit(l);
+    //findNodeByIndex(l, 4)
+    std::cout<<"inputs integeres stop with Alt + Z, enter";
+    IntegerListReadTillZero(l, std::cin);
+    std::cout<<"input position to stay: ";
+    int beginIndex;
+    std::cin>>beginIndex;
+    if(beginIndex < 0 || IntegerListIsEmpty(l) )
+    {
+        reportPositionError();
+    }
+    else if (beginIndex!=0);
+    {
+        findNodeByIndex(l,beginIndex);
+    }
+    std::cout<<"input how many elements you want to delete: ";
+    int countToDelete;
+    std::cin>>countToDelete;
+    int pEndIndex = beginIndex + countToDelete;
+    IntegerList::Node * pBeginDelete = findNodeByIndex(l, beginIndex);
+
+    IntegerList::Node * pEndDelete = findNodeByIndex(l, pEndIndex);
+    do
+    {
+        IntegerList::Node * pNextDelete = pBeginDelete->m_pNext;
+        IntegerListDeleteNode(l, pBeginDelete);
+        pBeginDelete = pNextDelete;
+    }while(pBeginDelete!= pEndDelete);
+
+   
+    std::cout<<"Result: ";
+    IntegerListPrint( l, std::cout);
+    std::cout<<std::endl;
+    
+ 
     testFindByIndex();
 }
 

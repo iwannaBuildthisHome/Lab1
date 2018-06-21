@@ -205,7 +205,7 @@ void IntegerListDeleteBefore ( IntegerList & _list, IntegerList::Node * _pNextNo
 }
 
 
-void IntegerListDeleteNode ( IntegerList & _list, IntegerList::Node * _pNode )
+void IntegerListDeleteNode ( IntegerList & _list, IntegerList::Node * _pNode)
 {
     if ( _list.m_pFirst == _pNode )
         IntegerListPopFront( _list );

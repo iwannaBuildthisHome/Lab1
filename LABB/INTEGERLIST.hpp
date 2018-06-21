@@ -44,7 +44,7 @@ void IntegerListDeleteAfter ( IntegerList & _list, IntegerList::Node * _pPrevNod
 
 void IntegerListDeleteBefore ( IntegerList & _list, IntegerList::Node * _pNextNode );
 
-void IntegerListDeleteNode ( IntegerList & _list, IntegerList::Node * _pNode );
+void IntegerListDeleteNode ( IntegerList & _list, IntegerList::Node * _pNode);
 
 void IntegerListRead ( IntegerList & _list, std::istream & _i );
 
